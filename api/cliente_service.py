@@ -23,7 +23,9 @@ def get_all():
             cliente["id"] = i["id"]
             cliente["nome"] = i["nome"]
             cliente["email"] = i["email"]
-            cliente["telefone"] = i["telefone"]
+            cliente["senha"] = i["senha"]
+            cliente["telefone1"] = i["telefone1"]
+            cliente["telefone2"] = i["telefone2"]
             clientes.append(cliente)
     except Exception as e:
         print(e)
@@ -47,7 +49,9 @@ def get_by_id(id):
         cliente["id"] = row["id"]
         cliente["nome"] = row["nome"]
         cliente["email"] = row["email"]
-        cliente["telefone"] = row["telefone"]
+        cliente["senha"] = row["senha"]
+        cliente["telefone1"] = row["telefone1"]
+        cliente["telefone2"] = row["telefone2"]
            
     except Exception as e:
         print(str(e))
@@ -65,8 +69,8 @@ def add():
     try:
         conn = conectar()
         cur = conn.cursor()
-        cur.execute("INSERT INTO tb_cliente (nome, email, telefone) VALUES (?, ?, ?)",
-                    (cliente['nome'], cliente['email'], cliente['telefone']) )
+        cur.execute("INSERT INTO tb_cliente (nome, email,senha, telefone1, telefone2) VALUES (?, ?, ?, ?, ?)",
+                    (cliente['nome'], cliente['email'], cliente['senha'], cliente['telefone1'],cliente['telefone2']) )
         conn.commit()
         resposta = jsonify(
             {
@@ -91,8 +95,8 @@ def update():
     try:
         conn = conectar()
         cur = conn.cursor()
-        cur.execute("UPDATE tb_cliente SET nome=?, email=?, telefone=? WHERE id=?",
-                    (cliente['nome'], cliente['email'], cliente['telefone'], cliente['id']) )
+        cur.execute("UPDATE tb_cliente SET nome=?, email=?,senha=?, telefone1=?, telefone2=? WHERE id=?",
+                    (cliente['nome'], cliente['email'], cliente['senha'], cliente['telefone1'],cliente['telefone2'], cliente['id']) )
         conn.commit()
         resposta = jsonify({'mensagem':'Operacao realizada com sucesso'})
 
