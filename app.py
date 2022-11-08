@@ -4,7 +4,7 @@
 from flask import Flask
 from flask_cors import CORS
 from api.cliente_service import cliente
-from api.device_service import fornecedor
+from api.device_service import  device
 
 app = Flask(__name__)
 CORS(app,resources={r"/*":{"origins":"*"}})
@@ -13,7 +13,7 @@ CORS(app,resources={r"/*":{"origins":"*"}})
 # REGISTRAR AS ROTAS
 #
 app.register_blueprint(cliente,url_prefix='/api/cliente')
-app.register_blueprint(fornecedor,url_prefix='/api/device')
+app.register_blueprint(device,url_prefix='/api/device')
 #
 # OPERAÇÕES
 #

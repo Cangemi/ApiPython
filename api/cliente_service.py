@@ -6,6 +6,7 @@ cliente = Blueprint('cliente',__name__)
 def conectar():
     return sqlite3.connect('database/data.db')
 
+
 #
 # RETORNAR TODOS OS CLIENTES
 #
@@ -17,7 +18,6 @@ def get_all():
         conn.row_factory = sqlite3.Row
         cur = conn.cursor()
         cur.execute("SELECT * FROM tb_cliente")
-
         for i in cur.fetchall():
             cliente = {}
             cliente["id"] = i["id"]
